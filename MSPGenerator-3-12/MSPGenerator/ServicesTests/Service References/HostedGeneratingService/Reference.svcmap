@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0e49784c-04c1-48a7-9751-2998d3479f4a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:35099/GeneratingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GeneratingService.disco" MetadataType="Disco" ID="25317e97-f592-4b41-a919-175f7286a551" SourceId="1" SourceUrl="http://localhost:35099/GeneratingService.svc?disco" />
+    <MetadataFile FileName="GeneratingService.wsdl" MetadataType="Wsdl" ID="6384b1d4-d419-4a69-a5c4-40cdcefb2e6a" SourceId="1" SourceUrl="http://localhost:35099/GeneratingService.svc?wsdl" />
+    <MetadataFile FileName="GeneratingService1.wsdl" MetadataType="Wsdl" ID="24b5f1b7-eb47-4395-aed6-6810fa163f02" SourceId="1" SourceUrl="http://localhost:35099/GeneratingService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="GeneratingService.xsd" MetadataType="Schema" ID="a6e64773-e2c1-4dd5-b256-43f6809f9587" SourceId="1" SourceUrl="http://localhost:35099/GeneratingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GeneratingService1.xsd" MetadataType="Schema" ID="ae24d4cc-c257-4cbb-a546-536a42d9ea4e" SourceId="1" SourceUrl="http://localhost:35099/GeneratingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GeneratingService2.xsd" MetadataType="Schema" ID="9a7e5eae-16c7-4fc6-a399-2151859e9f11" SourceId="1" SourceUrl="http://localhost:35099/GeneratingService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

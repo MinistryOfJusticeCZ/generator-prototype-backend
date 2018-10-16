@@ -1,0 +1,38 @@
+D:\MSP\V1\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll.config
+D:\MSP\V1\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll
+D:\MSP\V1\MSPGenerator\MSPGenerator\bin\MSPGenerator.pdb
+D:\MSP\V1\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.dll
+D:\MSP\V1\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.pdb
+D:\MSP\V1\MSPGenerator\MSPGenerator\obj\Debug\MSPGeneratorServices.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll.config
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\bin\MSPGenerator.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\obj\Debug\MSPGeneratorServices.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.pdb
+D:\kubera\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll.config
+D:\kubera\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll
+D:\kubera\MSPGenerator\MSPGenerator\bin\MSPGenerator.pdb
+D:\kubera\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.dll
+D:\kubera\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.pdb
+D:\kubera\MSPGenerator\MSPGenerator\obj\Debug\MSPGeneratorServices.csprojResolveAssemblyReference.cache
+D:\kubera\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.dll
+D:\kubera\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\obj\Debug\MSPGeneratorServices.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\MSPGenerator.XML
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\MSPGenerator.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\MSPGenerator.XML
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\MSPGenerator.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\bin\SelectionsAlgorithms.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\obj\Debug\MSPGeneratorServices.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.pdb

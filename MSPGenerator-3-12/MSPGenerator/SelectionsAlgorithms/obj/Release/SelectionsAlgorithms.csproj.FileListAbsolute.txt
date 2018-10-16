@@ -1,0 +1,8 @@
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\bin\Release\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\bin\Release\SelectionsAlgorithms.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\obj\Release\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-15-1-2018\V-3-12\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\obj\Release\SelectionsAlgorithms.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\update-27-3-18\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\bin\Release\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\update-27-3-18\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\bin\Release\SelectionsAlgorithms.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\update-27-3-18\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\obj\Release\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\update-27-3-18\MSPGenerator-3-12\MSPGenerator\SelectionsAlgorithms\obj\Release\SelectionsAlgorithms.pdb

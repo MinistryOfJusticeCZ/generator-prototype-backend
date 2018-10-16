@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:cz:justice:jsb:services:GENERATOR:GeneratingService" elementFormDefault="qualified" targetNamespace="urn:cz:justice:jsb:services:GENERATOR:GeneratingService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:35099/GeneratingService.svc?xsd=xsd2" namespace="urn:cz:justice:jsb:services:GENERATOR:GeneratorBase" />
+  <xs:element name="AssignCase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="gparams" nillable="true" type="tns:AssignCaseParams" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="AssignCaseParams">
+    <xs:sequence>
+      <xs:element name="AlgorithmToUse" type="xs:int" />
+      <xs:element name="CaseIdentificator" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="urn:cz:justice:jsb:services:GENERATOR:GeneratorBase" name="Senates" nillable="true" type="q1:ArrayOfSenate" />
+      <xs:element xmlns:q2="urn:cz:justice:jsb:services:GENERATOR:GeneratorBase" name="User" nillable="true" type="q2:UserID" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AssignCaseParams" nillable="true" type="tns:AssignCaseParams" />
+  <xs:element name="AssignCaseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AssignCaseResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

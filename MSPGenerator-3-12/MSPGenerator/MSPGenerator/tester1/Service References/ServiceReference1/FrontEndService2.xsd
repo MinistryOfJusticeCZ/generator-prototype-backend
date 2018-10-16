@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MSPGenerator" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MSPGenerator" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd0" namespace="urn:cz:justice:jsb:services:GENERATOR:FrontEndService" />
+  <xs:complexType name="SimulationParams">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AlgorithmsToSimulate" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="CasesToDistribution" type="xs:int" />
+      <xs:element minOccurs="0" name="Senates" nillable="true" type="tns:ArrayOfSenate" />
+      <xs:element minOccurs="0" name="SimulationCount" type="xs:int" />
+      <xs:element xmlns:q2="urn:cz:justice:jsb:services:GENERATOR:FrontEndService" minOccurs="0" name="User" nillable="true" type="q2:UserID" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SimulationParams" nillable="true" type="tns:SimulationParams" />
+  <xs:complexType name="ArrayOfSenate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Senate" nillable="true" type="tns:Senate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSenate" nillable="true" type="tns:ArrayOfSenate" />
+  <xs:complexType name="Senate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveCases" type="xs:int" />
+      <xs:element minOccurs="0" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Load" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Senate" nillable="true" type="tns:Senate" />
+</xs:schema>

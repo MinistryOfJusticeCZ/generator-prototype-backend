@@ -1,0 +1,6 @@
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll.config
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\MSPGenerator\bin\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\MSPGenerator\bin\MSPGenerator.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\MSPGenerator\obj\Debug\MSPGenerator.pdb

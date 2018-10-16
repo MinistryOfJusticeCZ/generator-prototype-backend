@@ -1,0 +1,507 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MSPGenerator</name>
+    </assembly>
+    <members>
+        <member name="T:MSPGenerator.GeneratingService.GeneratingService">
+            <summary>
+            Implementace rozhraní služeb generátoru pro přidělování případů.
+            </summary>
+            <remarks>Třída slouží jako fasáda na generátorem přidělování případů <see cref="T:SelectionsAlgorithms.SelectionAlgorithm"/>.
+            Třída poskytuje službu náhodného výběru senátu z dané množiny senátů. Konkrétně metodu <see cref="M:MSPGenerator.GeneratingService.GeneratingService.AssignCase(MSPGenerator.GeneratingService.AssignCaseParams)"/>, která vrací identifikátor přiděleného senátu. Veškeré operace jsou logovány na straně serveru.
+            </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault"> V případě neplatných parametrů metod, či jinak nevalidních údajů, dochází k vyvolání výjimky.</exception>
+        </member>
+        <member name="M:MSPGenerator.GeneratingService.IGeneratingService.AssignCase(MSPGenerator.GeneratingService.AssignCaseParams)">
+            <summary>
+            Metoda přijímá informace nutné pro přidělení případu a případ přídělí.
+            </summary>
+            <remarks>
+            Metoda slouží jako fasáda pro volání generátoru přidělování pomocí zvoleného algoritmu. Volba použitého algoritmu je obsažena ve vstupních parametrech. Metoda zároveň loguje použití generátoru a jeho výstupy.
+            Předpokládá se úprava metody při integraci služby do systému, např. volba algoritmu bude pevně dána.
+            </remarks>
+            <param name="gparams">Vstupní parametry obsahují seznam možných senátů k přidělení, identifikátor případu, identifikátor uživatele a volbu algoritmu.</param>
+            <returns>Metoda vrací identifikátor senátu kterému byl případ přidělen.</returns>
+        </member>
+        <member name="F:MSPGenerator.GeneratingService.GeneratingService.factory">
+            <summary>
+            Factory objekt pro vytváření instancí implementovaných algoritmů přidělování.
+            </summary>
+        </member>
+        <member name="M:MSPGenerator.GeneratingService.GeneratingService.AssignCase(MSPGenerator.GeneratingService.AssignCaseParams)">
+            <summary>
+            Metoda z dané množiny senátů na vstupu vybere pomocí specifikovaného algoritmu jeden. Jedná se pouze o fasádu nad vnitřním přidělováním. 
+            </summary>
+            <param name="gparams">Vstupní parametry obsahující kdo operaci volal, seznam senátů k přidělení, identifikátor případu a algoritmus pro výběr.</param>
+            <returns>Metoda vrací identifikátor senátu.</returns>
+            <remarks> Metoda se chová bezstavově, tj. nedochází ke změně vstupních údajů. 
+            Všechny parametry přidělení jako jsou senáty, jejich zatížení, identifikátor případu k rozdělení je nutné zadat na vstupu. Metoda nepoužívá žádnou databázi pro čtení těchto informací. Co se jí předá, to použije. Pokud je některý ze senátů použitý pro simulaci zakázaný, tak si je automaticky vyjmut ze simulace.
+            Předávané informace o uživateli jsou použité pro logování.
+            </remarks>
+            <remarks>
+            Identifikátor algoritmu musí odpovídat vnitřnímu seznamu použitelných algoritmů, jinak dochází k výjimce. Předpokládá se úprava před nasazením, tak aby algoritmus byl pevně daný.
+            </remarks>
+            <remarks>
+            Použijí se pouze povolené senáty, nepovolené senáty se dále v simulaci nepoužijí. Pokud není žádný senát povolený, je volána výjimka. 
+            </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault">V případě neplatných parametrů dochází k vyvolání výjimky.</exception>
+        </member>
+        <member name="M:MSPGenerator.GeneratingService.GeneratingService.Assign(SelectionsAlgorithms.SelectionAlgorithm,MSPGenerator.GeneratingService.AssignCaseParams)">
+            <summary>
+            Vlastní implementace přidělení případu.
+            </summary>
+            <param name="algorithm">Algoritmus který se použije pro výběr.</param>
+            <param name="gparams">Vstupní parametry obsahující kdo operaci volal, seznam senátů k přidělení, identifikátor případu</param>
+            <returns>Identifikátor vybraného senátu</returns>
+            <remarks>
+             V případě, že všechny senáty mají nulové zatížení <see cref="T:MSPGenerator.Senate"/>, nebo není žádný povolen je vyvolána výjimka.
+            </remarks>
+            <exception cref="T:System.ArgumentException">Nastává v případě nulového zatížení všech senátů, nebo v případě, že všechny senáty jsou zakázány.</exception>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:MSPGenerator.MSPGeneratorServicesLog" -->
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.connectionstring">
+            <summary>
+            Connection string pro přístup k logu.
+            </summary>
+            <remarks>
+            V konfiguračním souboru se jedná o položku LoggingServicesConnection.
+            </remarks>
+        </member>
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.insertaction">
+            <summary>
+            Řetězec s SQL příkazem pro zápis do tabulky akcí Action, rodičovská tabulka .
+            </summary>
+        </member>
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.insertaction_scope_identity">
+            <summary>
+            Řetězec s SQL příkazem pro zápis do tabulky akcí Action (rodičovská tabulka), navíc je volán select na výběr id poslední vložené položky.
+            </summary>
+            <remarks>
+            Použití když je třeba získat identifikátor pro zápis do dceřiných tabulek Fault,SimulationInfo,GeneratingInfo a StatisticsInfo.
+            </remarks>
+        </member>
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.insertfault">
+            <summary>
+            Řetězec pro zápis do tabulky Fault.
+            </summary>
+        </member>
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.insertsimparams">
+            <summary>
+            Řetezec pro zápis simulačních parametrů do tabulky SimulationInfo
+            </summary>
+        </member>
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.insertgenparams">
+            <summary>
+            Řetezec pro zápis informací o voláni generátoru do tabulky GeneratingInfo
+            </summary>
+        </member>
+        <member name="F:MSPGenerator.MSPGeneratorServicesLog.insertstates">
+            <summary>
+            Řetezec pro zápis informací o volání generátoru do tabulky State
+            </summary>
+        </member>
+        <member name="M:MSPGenerator.MSPGeneratorServicesLog.WriteAction(System.Data.SqlClient.SqlConnection,System.String,System.String,System.DateTime,System.Boolean)">
+            <summary>
+            Metoda pro zápis do tabulky akcí Action
+            </summary>
+            <param name="connection">Connection-připojení</param>
+            <param name="user_id">Řetězec s identifikátorem uživatele</param>
+            <param name="action_name">Typ akce (simulace, zjišťování info o algoritmech, generovani prideleni pripadu)</param>
+            <param name="action_time">Čas události</param>
+            <param name="fault">Zda při akci došlo k selhání</param>
+            <remarks>
+            Zápis do tabulky (logu) je dán SQL příkazem v  řetězci <see cref="F:MSPGenerator.MSPGeneratorServicesLog.insertaction"/>.
+            </remarks>
+        </member>
+        <member name="M:MSPGenerator.MSPGeneratorServicesLog.WriteActionGetLastId(System.Data.SqlClient.SqlConnection,System.String,System.String,System.DateTime,System.Boolean)">
+            <summary>
+            Metoda pro zápis do tabulky akcí Action, která navíc vrací Id poslední zapsané položky.
+            </summary>
+            <param name="connection">Connection-připojení</param>
+            <param name="user_id">Řetězec s identifikátorem uživatele</param>
+            <param name="action_name">Typ akce (simulace, zjišťování info o algoritmech)</param>
+            <param name="action_time">Čas události</param>
+            <param name="fault">Zda při akci došlo k selhání</param>
+            <returns>Identifikátor poslední zapsané položky (primární klíč). </returns>
+            <remarks>
+            Předpokládá se využití primárního klíče jako cizího klíče v dceřiných tabulkách.
+            </remarks>
+        </member>
+        <member name="M:MSPGenerator.MSPGeneratorServicesLog.WriteActionSuccess(System.String,System.String)">
+            <summary>
+            Metoda zapisuje úspěšně provedenou akci do tabulky akcí Action.
+            </summary>
+            <param name="user_id">Identifikátor uživatele</param>
+            <param name="action_name">Jméno/typ akce</param>
+            <remarks>
+            Předpokládá se užití v případě logování úspěšné akce, kde se neukládají žádné parametry akce (simulace).
+            Protože by měla být použita při úspěšné akci, není proveden test na existenci parametrů.
+            </remarks>
+        </member>
+        <member name="M:MSPGenerator.MSPGeneratorServicesLog.WriteSimulationActionSuccess(System.String,System.String,MSPGenerator.SimulationService.SimulationParams)">
+            <summary>
+            Metoda zapisuje úspěšně provedenou akci do tabulky akcí Action, navíc ukládá i parametry simulace.
+            </summary>
+            <param name="user_id">Identifikátor uživatele</param>
+            <param name="action_name">Jméno/typ akce</param>
+            <param name="sparams">Parametry simulace k uložení</param>
+             /// <remarks>
+            Předpokládá se užití v případě logování úspěšné akce, kde se ukládají parametry akce (simulace).
+            Protože by měla být použita při úspěšné akci, není proveden test na existenci parametrů.
+            </remarks>
+            <remarks>
+            Dochází k logování simulačních parametrů do tabulky SimulationInfo
+            Počtu senátů, počtu případů, počtu iterací, identifikátory použitých algoritmů výběru.
+            </remarks>
+        </member>
+        <member name="M:MSPGenerator.MSPGeneratorServicesLog.WriteGeneratingActionSuccess(System.String,System.String,MSPGenerator.GeneratingService.AssignCaseParams,System.Double,System.Double[],System.String)">
+            <summary>
+             Metoda zapisuje úspěšně provedenou akci do tabulky akcí Action, navíc ukládá i parametry generování.
+            </summary>
+            <param name="user_id">Identifikátor uživatele</param>
+            <param name="action_name">Jméno akce</param>
+            <param name="gparams">Parametry generování k uložení</param>
+            <param name="random_value">Generovaná náhodná hodnota</param>
+            <param name="parray">Spočtené pole pravděpodobností</param>
+            <param name="result">Vybraný senát</param>
+            <remarks>
+            Předpokládá se užití v případě logování úspěšné akce, kde se ukládají parametry akce (generování).
+            Protože by měla být použita při úspěšné akci, není proveden test na existenci parametrů.
+            </remarks>
+            <remarks>
+            Dochází k logování parametrů generování do tabulky GeneratingInfo a stavů (aktuální konfigurace) do tabulky State
+            Do tabulky GeneratingInfo se ukládá: počet senátů, identifikátor použitého algoritmu,identifikátor případu, generovaná náhodná hodnota,vybraný senát a id k odkazu na rodičovskou tabulku Action.
+            Do tabulky State se ukládá:identifikátor každého senátu, zda je povolený, jeho zatížení, počet aktivních případů, levá a pravá mez intervalu pravděpodobnosti a id k odkazu na rodičovskou tabulku Action.
+            Pokud je senát nepovolen, tak je levá a pravá mez intervalu pravděpodobnosti nastavena na hodnotu 0.
+            </remarks>
+        </member>
+        <member name="M:MSPGenerator.MSPGeneratorServicesLog.WriteActionFault(System.String,System.String,System.String)">
+            <summary>
+            Metoda pro zápis selhání do tabulky selhání Fault a primární tabulky Action.
+            </summary>
+            <param name="user_id">Identifikátor uživatele</param>
+            <param name="action_name">Název/typ akce</param>
+            <param name="fault_message">Chybová zpráva</param>
+            <remarks>
+            Metoda zapíše do tabulky akcí Action danou akci s příznakem selhání.
+            Navíc do tabulky selhání Fault zapíše zprávu o příčině neúspěchu. 
+            </remarks>
+        </member>
+        <member name="T:MSPGenerator.GeneratingService.AssignCaseParams">
+            <summary>
+            Obalová třída pro přenos parametrů přidělování případů do služby.
+            </summary>
+            <remarks>
+            Pro ostré nasazení se předpokládá úprava předávaných parametrů dle požadavků na integraci služby.
+            </remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MSPGenerator.GeneratingService.AssignCaseParams.CheckAssignCaseParams(MSPGenerator.GeneratingService.AssignCaseParams)" -->
+        <member name="M:MSPGenerator.GeneratingService.AssignCaseParams.ToString">
+            <summary>
+            Metoda pro převod identity na řetězec.
+            </summary>
+            <remarks>Předpokládá se užití hlavně pro lazení.</remarks>
+            <returns>Řetězec odpovídající vstupním parametrům.</returns>
+        </member>
+        <member name="P:MSPGenerator.GeneratingService.AssignCaseParams.User">
+            <summary>
+            Uživatel který přidělení případů volá provádí. Předpokládá se použití validního uživatele.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.GeneratingService.AssignCaseParams.Senates" -->
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.GeneratingService.AssignCaseParams.CaseIdentificator" -->
+        <member name="P:MSPGenerator.GeneratingService.AssignCaseParams.AlgorithmToUse">
+            <summary>
+            Identifikátor algoritmu použitého pro simulaci.
+            </summary>
+            <remarks> 
+            Při implementaci ostré verze služby, se předpokládá použití vybraného konkrétního algoritmu. Dojde tedy k odstranění tohoto parametru, nebo se skryje a bude použit s pevnou hodnotou odpovídající konkrétnímu preferovanému algoritmu.
+            </remarks>
+        </member>
+        <member name="T:MSPGenerator.GeneratingService.GeneratingServiceNames">
+            <summary>
+            Třída pro zapouzdření informací nutných pro implementování stabdardů JSB_IS
+            </summary>
+        </member>
+        <member name="T:MSPGenerator.SimulationService.AlgorithmInfo">
+            <summary>
+            Třída zapouzdřující informace o implementovaných algoritmech přidělování případů pro frontend.
+            <remarks>
+            Všechny implementované a nabízení algoritmy přidělování případů poskytují pomocí atributu <see cref="P:MSPGenerator.SimulationService.AlgorithmInfo.AlgorithmDescription"/> informace o sobě. 
+            Vytváření těchto informací je automatizováno pomocí reflexe. Daná třída je tedy pouze projekcí původního atributu pro účely přenosu informací o implementovaných algoritmech z backendu aplikace na frontend, např. za účelem automatického vytváření GUI.
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.AlgorithmInfo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Inicializační konstruktor pro vytvoření instance třídy.
+            </summary>
+            <param name="id">Identifikátor algoritmu</param>
+            <param name="name">Interní jméno algoritmu</param>
+            <param name="description">Stručný popis algoritmu</param>
+        </member>
+        <member name="P:MSPGenerator.SimulationService.AlgorithmInfo.AlgorithmID">
+            <summary>
+            Vlastnost obsahující identifikátor losovacího algoritmu.
+            </summary>
+             
+        </member>
+        <member name="P:MSPGenerator.SimulationService.AlgorithmInfo.AlgorithmName">
+            <summary>
+            Vlastnost obsahující jméno losovacího algoritmu.
+            </summary>
+        </member>
+        <member name="P:MSPGenerator.SimulationService.AlgorithmInfo.AlgorithmDescription">
+            <summary>
+            Vlastnost obsahující krátký popis losovacího algoritmu.
+            </summary>
+        </member>
+        <member name="T:MSPGenerator.SimulationService.SimulationParams">
+            <summary>
+            Obalová třída pro přenos parametrů simulace do služby.
+            </summary>
+            <remarks>
+            Všechny kontroly se dějí pouze na straně služby. Při nesplnění kontrol na straně serveru dochází k výjimce. Pokud je potřeba kontrolovat validnost na straně klienta, tak je nutné si tyto kontroly a testy implementovat sám. 
+            </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault">Nastává při nesplnění testů validity dat na straně serveru. </exception>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MSPGenerator.SimulationService.SimulationParams.CheckSimulationParams(MSPGenerator.SimulationService.SimulationParams)" -->
+        <member name="P:MSPGenerator.SimulationService.SimulationParams.User">
+            <summary>
+            Uživatel který simulaci provádí. Předpokládá se použití validního uživatele.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.SimulationService.SimulationParams.Senates" -->
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.SimulationService.SimulationParams.CasesToDistribution" -->
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.SimulationService.SimulationParams.IterationsCount" -->
+        <member name="P:MSPGenerator.SimulationService.SimulationParams.AlgorithmsToSimulate">
+            <summary>
+            Seznam algoritmů použitých pro simulaci. Seznam nesmí být prázdný a nesmí obsahovat prázdné řetězce.
+            </summary>
+            <remarks> Existence vybraných algoritmů je ověřována až při jejich použití.</remarks>
+        </member>
+        <member name="T:MSPGenerator.SimulationService.SimulationResult">
+            <summary>
+            Obalová třída nesoucí informace o výsledcích simulace. Obsahuje jaký algoritmus byl použit a kolik který senát dostal případů z celkového počtu případů v každé iteraci simulace. Iterací se rozumí rozdělení celého balíku případů.
+            Předpokládá se její vytváření pouze na straně serveru.
+            </summary>
+            <remarks>Všechny kontroly se dějí pouze na straně serveru. Při nesplnění kontrol na straně serveru dochází k výjimce. Pokud je potřeba kontrolovat validnost na straně klienta, tak je nutné si tyto kontroly a testy implementovat sám. </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault">Nastává při nesplnění testů validity dat na straně serveru. </exception>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.SimulationResult.#ctor(System.Collections.Generic.List{System.Int32[]},System.Int32)">
+            <summary>
+            Inicializační konstruktor pro předání informací o výsledcích simulace.
+            </summary>
+            <param name="data">Seznam s výsledky jednotlivých iterací.</param>
+            <param name="algorithmid">Identifikátor algoritmu.</param>
+        </member>
+        <member name="P:MSPGenerator.SimulationService.SimulationResult.UsedAlgorithm">
+            <summary>
+            Informace o použitém algoritmu .
+            </summary>
+        </member>
+        <member name="P:MSPGenerator.SimulationService.SimulationResult.Data">
+            <summary>
+            Seznam obsahující rozdělení případů přidělených senátům během jedné iterace. Každý prvek seznamu odpovídá jedné iteraci rozdělení případů.
+            Pořadí prvků v poli odpovídá pořadí senátů vstupujících do simulace.
+            </summary>
+        </member>
+        <member name="T:MSPGenerator.BackEndBaseNames">
+            <summary>
+            Třída pro zapouzdření informací nutných pro implementování stabdardů JSB_IS
+            </summary>
+        </member>
+        <member name="T:MSPGenerator.GeneratorServiceFault">
+            <summary>
+            Třída pro předávání informací o selháních a vyjímkách na straně generátoru.
+            </summary>
+        </member>
+        <member name="M:MSPGenerator.GeneratorServiceFault.#ctor(System.String)">
+            <summary>
+            Inicializařní konstruktor. Inicializace je provedena předáním zprávy o výjimce.
+            </summary>
+            <param name="message">Text zprávy o výjimce.</param>
+        </member>
+        <member name="P:MSPGenerator.GeneratorServiceFault.Message">
+            <summary>
+            Informace o výjimce.
+            </summary>
+        </member>
+        <member name="T:MSPGenerator.UserIdentity">
+            <summary>
+            Třída pro předávání uživatelské identity. 
+            </summary>
+            <remarks>
+            Všechny kontroly se dějí pouze na straně služby. Při nesplnění kontrol na straně služby dochází k výjimce. Pokud je potřeba kontrolovat validnost na straně klienta, tak je nutné si tyto kontroly a testy implementovat sám. 
+            </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault">Nastává při nesplnění testů validity dat na straně služby. </exception>
+        </member>
+        <member name="M:MSPGenerator.UserIdentity.#ctor(System.String)">
+            <summary>
+            Konstruktor pro vytvoření identity uživatele. Může být volán jen na straně služby.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:MSPGenerator.UserIdentity.#ctor">
+            <summary>
+            Konstruktor pro vytvoření identity uživatele. Nemělo by vůbec docházet k jeho volání, pro testovací účely. Může být volán jen na straně služby.
+            </summary>
+        </member>
+        <member name="M:MSPGenerator.UserIdentity.CheckUserIdentity(MSPGenerator.UserIdentity)">
+            <summary>
+            Metoda pro kontrolu validity instance uživatelské identity. Předpokládá se užití na straně služby.
+            </summary>
+            <remarks>
+            Metoda nekontroluje a neověřuje uživatele vůči databázi uživatelů. Kontroluje zde instance není nulová a všechny atributy uživatele jsou nastavené. Je to z důvodu použití automatických vlastností.
+            </remarks>
+            <remarks>
+            V případě rozšíření třídy o další atributy, je nutné napsat jejich kontroly.
+            </remarks>
+            <param name="id">Instance uživatelské identity.</param>
+            <returns>Výsledek validace entity.</returns>
+        </member>
+        <member name="T:MSPGenerator.Senate">
+            <summary>
+            Obalová třída nesoucí informace o jednotlivých senátech.
+            </summary>
+            <remarks>
+            Všechny kontroly se dějí pouze na straně služby. Při nesplnění kontrol na straně služby dochází k výjimce. Pokud je potřeba kontrolovat validnost na straně klienta, tak je nutné si tyto kontroly a testy implementovat sám. 
+            </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault">Nastává při nesplnění testů validity dat na straně služby. </exception>
+        </member>
+        <member name="M:MSPGenerator.Senate.CheckLoad(System.Double)">
+            <summary>
+            Privátní kontrola validity zatížení
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MSPGenerator.Senate.CheckActiveCases(System.Int32)">
+            <summary>
+            Privátní kontrola počtu případů:(0,infinity)
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MSPGenerator.Senate.CheckSenate(MSPGenerator.Senate)" -->
+        <member name="M:MSPGenerator.Senate.#ctor(System.String,System.Boolean,System.Double,System.Int32)">
+            <summary>
+            Konstruktor pro vytváření senátu. Při použití na straně služby dochází ke kontrole validnosti údajů, při použití na straně klienta nikoliv.
+            </summary>
+            <param name="id">Identifikátor senátu</param>
+            <param name="enabled">Senát je povolen k přidělení případů.</param>
+            <param name="load">Zatížení senátu.</param>
+            <param name="acases">Počet aktivních případů.</param>
+        </member>
+        <member name="M:MSPGenerator.Senate.#ctor(System.String,System.Boolean,System.Double)">
+            <summary>
+            Konstruktor pro vytváření senátu. Automaticky má 0 aktivních případů.
+            Při použití na straně služby dochází ke kontrole validnosti údajů, při použití na straně klienta nikoliv.
+            </summary>
+            <param name="id">Identifikátor senátu</param>
+            <param name="enabled">Senát je povolen k přidělení případů.</param>
+            <param name="load">Zatížení senátu.</param>
+            <param name="acases">Počet aktivních případů.</param>
+        </member>
+        <member name="M:MSPGenerator.Senate.#ctor(System.String,System.Boolean)">
+            <summary>
+            Konstruktor pro vytváření senátu. Automaticky má 0 aktivních případů a 100% zatížení.
+            Při použití na straně služby dochází ke kontrole validnosti údajů, při použití na straně klienta nikoliv.
+            </summary>
+            <param name="id">Identifikátor senátu</param>
+            <param name="enabled">Senát je povolen k přidělení případů.</param>
+        </member>
+        <member name="M:MSPGenerator.Senate.#ctor(System.String)">
+            <summary>
+            Konstruktor pro vytváření senátu. Automaticky má 0 aktivních případů, 100% zatížení a je povolen k přidělení případů.
+            Při použití na straně služby dochází ke kontrole validnosti údajů, při použití na straně klienta nikoliv.
+            </summary>
+            <param name="id">Identifikátor senátu</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.Senate.Load" -->
+        <member name="P:MSPGenerator.Senate.ID">
+            <summary>
+            Identifikátor senátu.
+            </summary>
+        </member>
+        <member name="P:MSPGenerator.Senate.Enabled">
+            <summary>
+            Hodnota <value>true</value> indikuje, že senátu může být přidělen případ.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MSPGenerator.Senate.ActiveCases" -->
+        <member name="T:MSPGenerator.SimulationService.SimulationService">
+            <summary>
+            Implementace rozhraní služeb generátoru pro simulaci.
+            </summary>
+            <remarks>Třída slouží jako fasáda na generátorem přidělování případů <see cref="T:SelectionsAlgorithms.SelectionAlgorithm"/>. Třída poskytuje frontendu základní služby potřebné pro simulaci. Konkrétně metodu <see cref="M:MSPGenerator.SimulationService.SimulationService.GetImplementedAlgorithmInfo(MSPGenerator.UserIdentity)"/>, která vrací seznam implementovaných algoritmů přidělování případů. Dále je zde poskytována metoda <see cref="M:MSPGenerator.SimulationService.SimulationService.DoSimulation(MSPGenerator.SimulationService.SimulationParams)"/>, která umožňuje provádět simulace. Veškeré operace jsou logovány na straně serveru.</remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault"> V případě neplatných parametrů metod, či jinak nevalidních údajů, dochází k vyvolání výjimky.</exception>
+        </member>
+        <member name="T:MSPGenerator.SimulationService.ISimulationService">
+            <summary>
+            Rozhraní popisující služby poskytované službou frontendu za účelem provádění simulací rozdělování případů.
+            </summary>
+            <remarks>
+            Rozhraní nabízí metody pro zjištění implementovaných algoritmů a metodu pro provádění simulace. Slouží jako fasáda nad algoritmy generátoru přidělení.
+            </remarks>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.ISimulationService.GetImplementedAlgorithmInfo(MSPGenerator.UserIdentity)">
+            <summary>
+            Operace služby pro zjištění implementovaných algoritmů generátoru. 
+            </summary>
+            <param name="id">Vstupní identita uživatele.</param>
+            <returns>Seznam implementovaných algoritmů</returns>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.ISimulationService.DoSimulation(MSPGenerator.SimulationService.SimulationParams)">
+            <summary>
+            Operace služby zajišťující provádění simulace.
+            </summary>
+            <param name="sparams">Parametry simulace</param>
+            <returns>Výsledky simulace</returns>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.SimulationService.GetImplementedAlgorithmInfo(MSPGenerator.UserIdentity)">
+            <summary>
+            Metoda vrací informace o implementovaných algoritmech rozdělování případů na straně serveru.
+            </summary>
+            <param name="id">Identifikátor uživatele.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.SimulationService.DoSimulation(MSPGenerator.SimulationService.SimulationParams)">
+            <summary>
+            Metoda poskytující rozhraní pro provádění simulací.
+            </summary>
+            <param name="sparams">Parametry simulace.</param>
+            <returns>Výsledky simulace</returns>
+            <remarks> Metoda provádí bezstavovou simulaci, tj. nedochází ke změně vstupních údajů. Přidělené případy během simulace ovlivňují pouze aktuální simulaci.
+            Všechny parametry simulace jako jsou senáty, jejich zatížení, počet případů k rozdělení je nutné zadat na vstupu. Metoda nepoužívá žádnou databázi pro čtení těchto informací. Co se jí předá, to použije. Pokud je některý ze senátů použitý pro simulaci zakázaný, tak si je automaticky vyjmut ze simulace.
+            Předávané informace o uživateli jsou použité pro logování.
+            </remarks>
+            <remarks>
+            Použijí se pouze povolené senáty, pokud není žádný povolený, je volána výjimka.
+            </remarks>
+            <remarks>
+            Identifikátor algoritmu musí odpovídat vnitřnímu seznamu použitelných algoritmů, jinak dochází k výjimce.
+            </remarks>
+            <exception cref="T:MSPGenerator.GeneratorServiceFault">V případě neplatných parametrů dochází k vyvolání výjimky.</exception>
+        </member>
+        <member name="M:MSPGenerator.SimulationService.SimulationService.Simulate(SelectionsAlgorithms.SelectionAlgorithm,MSPGenerator.SimulationService.SimulationParams)">
+            <summary>
+            Metoda pro vlastní simulaci přidělování případů.
+            </summary>
+            <param name="algorithm">Algoritmus použitý pro simulaci.</param>
+            <param name="sparams">Vstupní parametry simulace.</param>
+            <returns>Rozdělení případů mezi senáty v jednotlivých iteracích. Každé pole v seznamu odpovídá jedné iteraci. V poli je uložena distribuce zadaného počtu případů mezi senáty. Pořadí prvků v poli odpovídá pořadí senátů na vstupu.</returns>
+            <remarks>
+             Vstupem je vybraný algoritmus a parametry simulace. Metoda provádí jednotlivé iterace simulace. V každé iteraci dojde k rozdělení všech zadaných případů mezi povolené senáty.
+            Z důvodů flexibility metoda přijme v simulačních parametrech všechny senáty a vybere si pouze aktivní-povolené senáty k simulaci. V případě, že všechny senáty mají nulové zatížení <see cref="T:MSPGenerator.Senate"/>, je vyvolána výjimka.
+            </remarks>
+            <exception cref="T:System.ArgumentException">Nastává v případě nulového zatížení všech senátů, nebo v případě, že všechny senáty jsou zakázány.</exception>
+        </member>
+        <member name="T:MSPGenerator.SimulationServiceNames">
+            <summary>
+            Třída pro zapouzdření informací nutných pro implementování standardů JSB_IS
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ebbc5b35-d3fc-4a1c-b810-06c4d19ec4ad" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7919/Source/FrontEndService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FrontEndService.xsd" MetadataType="Schema" ID="3121df50-7f67-48c6-95f4-9cb6784e4610" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FrontEndService.wsdl" MetadataType="Wsdl" ID="df375628-ed64-40d5-bd49-8a77340caf75" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?wsdl" />
+    <MetadataFile FileName="FrontEndService1.xsd" MetadataType="Schema" ID="801c20b7-7ac5-4b48-af3e-ccc275225f1b" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd3" />
+    <MetadataFile FileName="FrontEndService.disco" MetadataType="Disco" ID="33b36b39-78af-4fe3-9c73-507e508c41dc" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?disco" />
+    <MetadataFile FileName="FrontEndService2.xsd" MetadataType="Schema" ID="cda8a301-21a9-4897-93b3-1f445a0870cc" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd2" />
+    <MetadataFile FileName="FrontEndService1.wsdl" MetadataType="Wsdl" ID="f69aad82-9255-47bc-a59b-a6e5ec3cb3f8" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="FrontEndService3.xsd" MetadataType="Schema" ID="7e922f89-8ff5-4098-82b4-2348fbfe3180" SourceId="1" SourceUrl="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

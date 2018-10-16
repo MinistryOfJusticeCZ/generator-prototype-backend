@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:cz:justice:jsb:services:GENERATOR:FrontEndService" elementFormDefault="qualified" targetNamespace="urn:cz:justice:jsb:services:GENERATOR:FrontEndService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7919/Source/FrontEndService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MSPGenerator" />
+  <xs:element name="GetAlgorithmInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="tns:UserID" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="UserID">
+    <xs:sequence>
+      <xs:element name="ID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserID" nillable="true" type="tns:UserID" />
+  <xs:element name="GetAlgorithmInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAlgorithmInfoResult" nillable="true" type="tns:ArrayOfAlgorithmInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfAlgorithmInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlgorithmInfo" nillable="true" type="tns:AlgorithmInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlgorithmInfo" nillable="true" type="tns:ArrayOfAlgorithmInfo" />
+  <xs:complexType name="AlgorithmInfo">
+    <xs:sequence>
+      <xs:element name="AlgorithmDescription" nillable="true" type="xs:string" />
+      <xs:element name="AlgorithmID" nillable="true" type="xs:string" />
+      <xs:element name="AlgorithmName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlgorithmInfo" nillable="true" type="tns:AlgorithmInfo" />
+  <xs:element name="DoSimulation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MSPGenerator" minOccurs="0" name="sparams" nillable="true" type="q1:SimulationParams" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DoSimulationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

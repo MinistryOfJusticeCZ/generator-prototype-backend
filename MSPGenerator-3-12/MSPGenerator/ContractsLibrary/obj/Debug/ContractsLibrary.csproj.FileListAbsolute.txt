@@ -1,0 +1,5 @@
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\ContractsLibrary\bin\Debug\ContractsLibrary.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\ContractsLibrary\bin\Debug\ContractsLibrary.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\ContractsLibrary\obj\Debug\ContractsLibrary.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\ContractsLibrary\obj\Debug\ContractsLibrary.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\ContractsLibrary\obj\Debug\ContractsLibrary.csprojResolveAssemblyReference.cache

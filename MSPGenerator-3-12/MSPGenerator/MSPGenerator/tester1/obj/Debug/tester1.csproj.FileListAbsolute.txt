@@ -1,0 +1,8 @@
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\bin\Debug\tester1.exe.config
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\bin\Debug\tester1.exe
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\bin\Debug\tester1.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\obj\Debug\tester1.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\obj\Debug\tester1.exe
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\obj\Debug\tester1.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\bin\Debug\SelectionsAlgorithms.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\MSPGenerator\V-26-11\MSPGenerator\MSPGenerator\tester1\bin\Debug\SelectionsAlgorithms.pdb
